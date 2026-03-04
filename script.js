@@ -9,6 +9,7 @@ form.addEventListener("submit", function (e) {
     e.preventDefault(); // stop page reload
 
     // form values
+
     const firstName = document.querySelector('input[name="first_name"]').value;
     const middleName = document.querySelector('input[name="middle_name"]').value;
     const lastName = document.querySelector('input[name="last_name"]').value;
@@ -42,4 +43,6 @@ form.addEventListener("submit", function (e) {
 
     // Show the slip
     document.getElementById("ninSlip").style.display = "block";
+
+    form.style.display = "none"; // hide form after submission  
 });

@@ -4,7 +4,6 @@
     box-sizing: border-box;
 }
 
-/* Body styling */
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f4f6f8;
@@ -12,7 +11,6 @@ body {
     color: #333;
 }
 
-/* Form container */
 form {
     background-color: #ffffff;
     max-width: 600px;
@@ -22,13 +20,11 @@ form {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* Headings */
 h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-/* Fieldset styling */
 fieldset {
     border: 1px solid #ddd;
     padding: 15px;
@@ -36,20 +32,17 @@ fieldset {
     border-radius: 4px;
 }
 
-/* Legend styling */
 legend {
     font-weight: bold;
     padding: 0 8px;
 }
 
-/* Labels */
 label {
     display: block;
     margin-bottom: 5px;
     font-size: 14px;
 }
 
-/* Inputs, selects and textarea */
 input,
 select,
 textarea {
@@ -61,7 +54,6 @@ textarea {
     font-size: 14px;
 }
 
-/* Focus effect */
 input:focus,
 select:focus,
 textarea:focus {
@@ -69,7 +61,6 @@ textarea:focus {
     border-color: #0077cc;
 }
 
-/* Submit button */
 input[type="submit"] {
     background-color: #0077cc;
     color: #fff;
@@ -79,12 +70,10 @@ input[type="submit"] {
     transition: background-color 0.2s ease;
 }
 
-/* Hover effect */
 input[type="submit"]:hover {
     background-color: #005fa3;
 }
 
-/* NIN Slip Styling */
 .nin-slip {
     margin-top: 40px;
     background: #ffffff;
