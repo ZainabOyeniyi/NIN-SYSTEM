@@ -4,125 +4,501 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIN APP</title>
+    <title>NIN Application — NIMC Nigeria</title>
     <link rel="stylesheet" href="index.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@500&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
-    <h2>National Identification Number (NIN) Application Form</h2>
-
-    <form action="#" method="post" enctype="multipart/form-data">
-
-        <fieldset>
-            <legend>Personal Information</legend>
-
-            <label>First Name:</label>
-            <input type="text" name="first_name" required><br><br>
-
-            <label>Middle Name:</label>
-            <input type="text" name="middle_name"><br><br>
-
-            <label>Last Name:</label>
-            <input type="text" name="last_name" required><br><br>
-
-            <label>Date of Birth:</label>
-            <input type="date" name="dob" required><br><br>
-
-            <label>Place of Birth:</label>
-            <input type="text" name="place_of_birth" required><br><br>
-
-            <label>Gender:</label>
-            <select name="gender" required>
-                <option value="">Select</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-            </select><br><br>
-
-            <label>Marital Status:</label>
-            <select name="marital_status">
-                <option value="">Select</option>
-                <option value="single">Single</option>
-                <option value="married">Married</option>
-                <option value="divorced">Divorced</option>
-                <option value="widowed">Widowed</option>
-            </select><br><br>
-
-            <label>Nationality:</label>
-            <input type="text" name="nationality" required><br><br>
-        </fieldset>
-
-        <br>
-
-        <fieldset>
-            <legend>Contact Information</legend>
-
-            <label>Residential Address:</label><br>
-            <textarea name="address" rows="3" cols="30" required></textarea><br><br>
-
-            <label>Phone Number:</label>
-            <input type="tel" name="phone" required><br><br>
-
-            <label>Email Address:</label>
-            <input type="email" name="email"><br><br>
-        </fieldset>
-
-        <br>
-
-        <fieldset>
-            <legend>Parent/Guardian Information (If Applicant is Minor)</legend>
-
-            <label>Parent/Guardian Full Name:</label>
-            <input type="text" name="guardian_name"><br><br>
-
-            <label>Parent/Guardian Phone:</label>
-            <input type="tel" name="guardian_phone"><br><br>
-        </fieldset>
-
-        <br>
-
-        <fieldset>
-            <legend>Upload Documents</legend>
-
-            <label>Passport Photograph:</label>
-            <input type="file" name="passport_photo" accept="image/*" required><br><br>
-
-            <label>Birth Certificate:</label>
-            <input type="file" name="birth_certificate" accept=".pdf,image/*"><br><br>
-
-            <label>Proof of Address:</label>
-            <input type="file" name="proof_of_address" accept=".pdf,image/*"><br><br>
-        </fieldset>
-
-        <br>
-
-        <input type="submit" value="Submit Application">
-
-    </form>
-    <hr>
-
-    <div id="ninSlip" class="nin-slip" style="display: none;">
-        <h3>NATIONAL IDENTIFICATION SLIP</h3>
-
-        <div class="slip-content">
-            <div class="slip-left">
-                <img id="slipPhoto" src="" alt="Passport Photo">
+    <!-- SITE HEADER -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-flag">🇳🇬</div>
+            <div class="header-text">
+                <div class="header-org">National Identity Management Commission</div>
+                <div class="header-sub">Federal Republic of Nigeria · NIMC</div>
             </div>
+            <div class="header-badge">NIMC</div>
+        </div>
+        <div class="header-stripe"></div>
+    </header>
 
-            <div class="slip-right">
-                <p><strong>NIN:</strong> <span id="displayNin"></span></p>
-                <p><strong>Full Name:</strong> <span id="displayName"></span></p>
-                <p><strong>Date of Birth:</strong> <span id="displayDob"></span></p>
-                <p><strong>Gender:</strong> <span id="displayGender"></span></p>
-                <p><strong>Phone:</strong> <span id="displayPhone"></span></p>
-                <p><strong>Address:</strong> <span id="displayAddress"></span></p>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-tag">Official NIN Enrollment Portal</div>
+            <h1 class="hero-title">Apply for Your<br><em>National Identification</em><br>Number</h1>
+            <p class="hero-desc">Your NIN is your lifelong identity. Complete the form below to begin enrollment with
+                the National Identity Management Commission.</p>
+            <div class="hero-stats">
+                <div class="stat"><span>100M+</span> Enrolled</div>
+                <div class="stat"><span>36</span> States + FCT</div>
+                <div class="stat"><span>Free</span> Enrollment</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRESS -->
+    <div class="progress-wrap" id="progressBar">
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="steps-row">
+            <div class="step active" data-step="1">
+                <div class="step-dot"><i class="fas fa-user"></i></div>
+                <div class="step-label">Personal</div>
+            </div>
+            <div class="step" data-step="2">
+                <div class="step-dot"><i class="fas fa-home"></i></div>
+                <div class="step-label">Contact</div>
+            </div>
+            <div class="step" data-step="3">
+                <div class="step-dot"><i class="fas fa-upload"></i></div>
+                <div class="step-label">Documents</div>
+            </div>
+            <div class="step" data-step="4">
+                <div class="step-dot"><i class="fas fa-check"></i></div>
+                <div class="step-label">Review</div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- FORM -->
+    <main class="form-wrapper" id="formSection">
+        <form id="ninForm" novalidate>
 
+            <!-- STEP 1 -->
+            <section class="form-step active" data-step="1">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fas fa-id-card"></i></div>
+                    <div>
+                        <h2>Personal Information</h2>
+                        <p>Provide your legal names exactly as on your birth certificate</p>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div class="field-group">
+                        <label for="first_name">First Name <span class="req">*</span></label>
+                        <input type="text" id="first_name" name="first_name" placeholder="e.g. Chukwuemeka" required
+                            autocomplete="given-name">
+                        <span class="field-error"></span>
+                    </div>
+                    <div class="field-group">
+                        <label for="middle_name">Middle Name</label>
+                        <input type="text" id="middle_name" name="middle_name" placeholder="Optional"
+                            autocomplete="additional-name">
+                    </div>
+                    <div class="field-group">
+                        <label for="last_name">Last Name <span class="req">*</span></label>
+                        <input type="text" id="last_name" name="last_name" placeholder="e.g. Okafor" required
+                            autocomplete="family-name">
+                        <span class="field-error"></span>
+                    </div>
+                    <div class="field-group">
+                        <label for="dob">Date of Birth <span class="req">*</span></label>
+                        <input type="date" id="dob" name="dob" required>
+                        <span class="field-error"></span>
+                    </div>
+                    <div class="field-group">
+                        <label for="place_of_birth">Place of Birth <span class="req">*</span></label>
+                        <input type="text" id="place_of_birth" name="place_of_birth" placeholder="e.g. Enugu" required>
+                        <span class="field-error"></span>
+                    </div>
+                    <div class="field-group">
+                        <label for="gender">Gender <span class="req">*</span></label>
+                        <div class="select-wrap">
+                            <select id="gender" name="gender" required>
+                                <option value="">Select gender</option>
+                                <option value="MALE">Male</option>
+                                <option value="FEMALE">Female</option>
+                            </select>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <span class="field-error"></span>
+                    </div>
+                    <div class="field-group">
+                        <label for="marital_status">Marital Status</label>
+                        <div class="select-wrap">
+                            <select id="marital_status" name="marital_status">
+                                <option value="">Select status</option>
+                                <option>Single</option>
+                                <option>Married</option>
+                                <option>Divorced</option>
+                                <option>Widowed</option>
+                            </select>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <label for="nationality">Nationality <span class="req">*</span></label>
+                        <input type="text" id="nationality" name="nationality" value="Nigerian" required>
+                        <span class="field-error"></span>
+                    </div>
+                </div>
+                <div class="step-nav">
+                    <span></span>
+                    <button type="button" class="btn-next" onclick="nextStep(1)">Next: Contact Info <i
+                            class="fas fa-arrow-right"></i></button>
+                </div>
+            </section>
+
+            <!-- STEP 2 -->
+            <section class="form-step" data-step="2">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <h2>Contact Information</h2>
+                        <p>Your current residential address and reachable contact details</p>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div class="field-group full">
+                        <label for="address_street">Street Address <span class="req">*</span></label>
+                        <input type="text" id="address_street" name="address_street"
+                            placeholder="e.g. 14 Adeola Odeku Street, Victoria Island" required>
+                        <span class="field-error"></span>
+                    </div>
+                    <div class="field-group">
+                        <label for="address_city">City / Town <span class="req">*</span></label>
+                        <input type="text" id="address_city" name="address_city" placeholder="e.g. Lagos" required>
+                        <span class="field-error"></span>
+                    </div>
+                    <div class="field-group">
+                        <label for="address_state">State <span class="req">*</span></label>
+                        <div class="select-wrap">
+                            <select id="address_state" name="address_state" required>
+                                <option value="">Select state</option>
+                                <option>Abia</option>
+                                <option>Adamawa</option>
+                                <option>Akwa Ibom</option>
+                                <option>Anambra</option>
+                                <option>Bauchi</option>
+                                <option>Bayelsa</option>
+                                <option>Benue</option>
+                                <option>Borno</option>
+                                <option>Cross River</option>
+                                <option>Delta</option>
+                                <option>Ebonyi</option>
+                                <option>Edo</option>
+                                <option>Ekiti</option>
+                                <option>Enugu</option>
+                                <option>FCT Abuja</option>
+                                <option>Gombe</option>
+                                <option>Imo</option>
+                                <option>Jigawa</option>
+                                <option>Kaduna</option>
+                                <option>Kano</option>
+                                <option>Katsina</option>
+                                <option>Kebbi</option>
+                                <option>Kogi</option>
+                                <option>Kwara</option>
+                                <option>Lagos</option>
+                                <option>Nasarawa</option>
+                                <option>Niger</option>
+                                <option>Ogun</option>
+                                <option>Ondo</option>
+                                <option>Osun</option>
+                                <option>Oyo</option>
+                                <option>Plateau</option>
+                                <option>Rivers</option>
+                                <option>Sokoto</option>
+                                <option>Taraba</option>
+                                <option>Yobe</option>
+                                <option>Zamfara</option>
+                            </select>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <span class="field-error"></span>
+                    </div>
+                    <div class="field-group">
+                        <label for="phone">Phone Number <span class="req">*</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="e.g. 08012345678" required>
+                        <span class="field-error"></span>
+                    </div>
+                    <div class="field-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="e.g. you@example.com">
+                    </div>
+                </div>
+
+                <div class="section-divider"><span>Parent / Guardian — only if applicant is a minor</span></div>
+
+                <div class="form-grid">
+                    <div class="field-group">
+                        <label for="guardian_name">Guardian Full Name</label>
+                        <input type="text" id="guardian_name" name="guardian_name" placeholder="Optional">
+                    </div>
+                    <div class="field-group">
+                        <label for="guardian_phone">Guardian Phone</label>
+                        <input type="tel" id="guardian_phone" name="guardian_phone" placeholder="Optional">
+                    </div>
+                </div>
+
+                <div class="step-nav">
+                    <button type="button" class="btn-back" onclick="prevStep(2)"><i class="fas fa-arrow-left"></i>
+                        Back</button>
+                    <button type="button" class="btn-next" onclick="nextStep(2)">Next: Documents <i
+                            class="fas fa-arrow-right"></i></button>
+                </div>
+            </section>
+
+            <!-- STEP 3 -->
+            <section class="form-step" data-step="3">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fas fa-folder-open"></i></div>
+                    <div>
+                        <h2>Upload Documents</h2>
+                        <p>Upload clear, legible copies. Supported formats: JPG, PNG, PDF</p>
+                    </div>
+                </div>
+
+                <div class="upload-grid">
+                    <div class="upload-card required-doc">
+                        <div class="upload-badge">Required</div>
+                        <div class="upload-zone" id="zone-photo"
+                            onclick="document.getElementById('passport_photo').click()">
+                            <div class="upload-content" id="preview-photo">
+                                <div class="upload-icon"><i class="fas fa-user-circle"></i></div>
+                                <div class="upload-title">Passport Photograph</div>
+                                <div class="upload-hint">Click to upload · JPG/PNG · Max 2MB</div>
+                            </div>
+                            <img id="img-photo" src="" alt="" style="display:none">
+                        </div>
+                        <input type="file" id="passport_photo" name="passport_photo" accept="image/*" required
+                            style="display:none" onchange="previewFile('photo',this)">
+                        <div class="upload-filename" id="fname-photo"></div>
+                        <span class="field-error" id="err-photo"></span>
+                    </div>
+
+                    <div class="upload-card">
+                        <div class="upload-badge optional">Optional</div>
+                        <div class="upload-zone" id="zone-cert"
+                            onclick="document.getElementById('birth_certificate').click()">
+                            <div class="upload-content" id="preview-cert">
+                                <div class="upload-icon"><i class="fas fa-file-alt"></i></div>
+                                <div class="upload-title">Birth Certificate</div>
+                                <div class="upload-hint">Click to upload · PDF/Image · Max 5MB</div>
+                            </div>
+                            <img id="img-cert" src="" alt="" style="display:none">
+                        </div>
+                        <input type="file" id="birth_certificate" name="birth_certificate" accept=".pdf,image/*"
+                            style="display:none" onchange="previewFile('cert',this)">
+                        <div class="upload-filename" id="fname-cert"></div>
+                    </div>
+
+                    <div class="upload-card">
+                        <div class="upload-badge optional">Optional</div>
+                        <div class="upload-zone" id="zone-addr"
+                            onclick="document.getElementById('proof_of_address').click()">
+                            <div class="upload-content" id="preview-addr">
+                                <div class="upload-icon"><i class="fas fa-map-marked-alt"></i></div>
+                                <div class="upload-title">Proof of Address</div>
+                                <div class="upload-hint">Click to upload · PDF/Image · Max 5MB</div>
+                            </div>
+                            <img id="img-addr" src="" alt="" style="display:none">
+                        </div>
+                        <input type="file" id="proof_of_address" name="proof_of_address" accept=".pdf,image/*"
+                            style="display:none" onchange="previewFile('addr',this)">
+                        <div class="upload-filename" id="fname-addr"></div>
+                    </div>
+                </div>
+
+                <div class="step-nav">
+                    <button type="button" class="btn-back" onclick="prevStep(3)"><i class="fas fa-arrow-left"></i>
+                        Back</button>
+                    <button type="button" class="btn-next" onclick="nextStep(3)">Review & Submit <i
+                            class="fas fa-arrow-right"></i></button>
+                </div>
+            </section>
+
+            <!-- STEP 4 -->
+            <section class="form-step" data-step="4">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fas fa-clipboard-check"></i></div>
+                    <div>
+                        <h2>Review Your Application</h2>
+                        <p>Verify all information before final submission</p>
+                    </div>
+                </div>
+
+                <div class="review-grid" id="reviewGrid"></div>
+
+                <div class="consent-box">
+                    <label class="check-label">
+                        <input type="checkbox" id="consent" required>
+                        <span class="checkmark"></span>
+                        <span>I confirm that all information provided is true, accurate and complete. I understand that
+                            providing false information is a criminal offence under the NIMC Act Cap N162 LFN
+                            2004.</span>
+                    </label>
+                    <span class="field-error" id="err-consent"></span>
+                </div>
+
+                <div class="step-nav">
+                    <button type="button" class="btn-back" onclick="prevStep(4)"><i class="fas fa-arrow-left"></i>
+                        Back</button>
+                    <button type="submit" class="btn-submit" id="submitBtn">
+                        <span class="btn-text"><i class="fas fa-paper-plane"></i> Submit Application</span>
+                        <span class="btn-loader" style="display:none"><i class="fas fa-circle-notch fa-spin"></i>
+                            Processing…</span>
+                    </button>
+                </div>
+            </section>
+
+        </form>
+    </main>
+
+    <!-- ════════════════════════════════════════
+     NIN SLIP
+════════════════════════════════════════ -->
+    <div id="ninSlip" class="nin-slip" style="display:none;">
+
+        <!-- SLIP HEADER -->
+        <div class="slip-header">
+            <div class="sh-left">
+                <span class="sh-flag">🇳🇬</span>
+            </div>
+            <div class="sh-center">
+                <div class="sh-org">National Identity Management Commission</div>
+                <div class="sh-country">Federal Republic of Nigeria</div>
+                <div class="sh-doc">NATIONAL IDENTIFICATION NUMBER SLIP (NINS)</div>
+            </div>
+            <div class="sh-right">
+                <div class="sh-nimc">NIMC</div>
+                <div class="sh-est">EST. 2007</div>
+            </div>
+        </div>
+
+        <!-- GREEN BAR -->
+        <div class="slip-greenbar">
+            <span>OFFICIAL DOCUMENT · KEEP THIS SLIP SAFELY · YOUR NIN IS YOUR IDENTITY</span>
+        </div>
+
+        <!-- SLIP MAIN CONTENT -->
+        <div class="slip-content">
+
+            <!-- DATA TABLE -->
+            <div class="slip-table">
+
+                <div class="st-row">
+                    <div class="st-cell w50 border-right">
+                        <div class="st-label">Tracking ID</div>
+                        <div class="st-value mono" id="displayTracking"></div>
+                    </div>
+                    <div class="st-cell w50">
+                        <div class="st-label">Date Issued</div>
+                        <div class="st-value" id="displayDate"></div>
+                    </div>
+                </div>
+
+                <div class="st-row">
+                    <div class="st-cell w100">
+                        <div class="st-label">Surname</div>
+                        <div class="st-value lg" id="displaySurname"></div>
+                    </div>
+                </div>
+
+                <div class="st-row">
+                    <div class="st-cell w50 border-right">
+                        <div class="st-label">First Name</div>
+                        <div class="st-value" id="displayFirst"></div>
+                    </div>
+                    <div class="st-cell w50">
+                        <div class="st-label">Middle Name</div>
+                        <div class="st-value" id="displayMiddle"></div>
+                    </div>
+                </div>
+
+                <div class="st-row">
+                    <div class="st-cell w33 border-right">
+                        <div class="st-label">Date of Birth</div>
+                        <div class="st-value" id="displayDob"></div>
+                    </div>
+                    <div class="st-cell w33 border-right">
+                        <div class="st-label">Gender</div>
+                        <div class="st-value" id="displayGender"></div>
+                    </div>
+                    <div class="st-cell w34">
+                        <div class="st-label">Nationality</div>
+                        <div class="st-value" id="displayNationality"></div>
+                    </div>
+                </div>
+
+                <div class="st-row">
+                    <div class="st-cell w100">
+                        <div class="st-label">Residential Address</div>
+                        <div class="st-value" id="displayAddress"></div>
+                    </div>
+                </div>
+
+                <!-- NIN BOX -->
+                <div class="nin-box">
+                    <div class="nin-box-label">NATIONAL IDENTIFICATION NUMBER</div>
+                    <div class="nin-box-number" id="displayNin"></div>
+                    <div class="nin-box-note">This number is unique to you and valid for life</div>
+                </div>
+
+            </div>
+
+            <!-- PHOTO COLUMN -->
+            <div class="slip-photo-col">
+                <div class="slip-photo-frame">
+                    <img id="slipPhoto" src="" alt="Passport Photo">
+                </div>
+                <div class="slip-photo-caption">APPLICANT<br>PHOTOGRAPH</div>
+                <!-- Barcode simulation -->
+                <div class="slip-barcode" id="slipBarcode"></div>
+                <div class="slip-barcode-label">Scan to verify</div>
+            </div>
+
+        </div>
+
+        <!-- NOTE -->
+        <div class="slip-note">
+            <i class="fas fa-shield-alt"></i>
+            <p>The National Identification Number (NIN) is your unique, lifelong identity assigned by the Federal
+                Government of Nigeria. It is confidential and may only be released for legitimate transactions. You will
+                be notified when your National Identity Card (NIC) is ready for collection at the enrollment centre. For
+                enquiries, contact NIMC using the details below.</p>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="slip-footer">
+            <div class="slip-fc">
+                <i class="fas fa-envelope"></i>
+                <span>helpdesk@nimc.gov.ng</span>
+            </div>
+            <div class="slip-fc">
+                <i class="fas fa-globe"></i>
+                <span>www.nimc.gov.ng</span>
+            </div>
+            <div class="slip-fc">
+                <i class="fas fa-phone-alt"></i>
+                <span>0700-CALL-NIMC</span>
+            </div>
+            <div class="slip-fc slip-fc-wide">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>11 Sokode Crescent, Off Dalaba Street, Zone 5 Wuse, Abuja — Nigeria</span>
+            </div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="slip-actions">
+            <button class="btn-print" onclick="window.print()"><i class="fas fa-print"></i> Print Slip</button>
+            <button class="btn-download" onclick="downloadSlip()"><i class="fas fa-download"></i> Save as PDF</button>
+            <button class="btn-new" onclick="resetForm()"><i class="fas fa-plus-circle"></i> New Application</button>
+        </div>
+
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Saved</span></div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
